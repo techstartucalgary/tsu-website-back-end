@@ -1,1 +1,1 @@
-web: gunicorn TechStartBackEnd.wsgi:application --log-file -
+web: gunicorn TechStartBackEnd.wsgi
