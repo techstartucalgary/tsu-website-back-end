@@ -79,3 +79,6 @@ class RegisterUserView(generics.CreateAPIView):
         permissions.AllowAny
     ]
     serializer_class = RegisterSerializer 
+
+# class updateUserPosts(generics.ListApiView):
+    
