@@ -32,6 +32,7 @@ urlpatterns = [
     path('post', views.getPost.as_view(), name='Posts'),
     path('post/create', views.savePost.as_view(), name='Save Post'),
     path('post/<int:pk>', views.updatePost.as_view(), name='Update Post'),
+    path('update-post/<int:pk>', views.updateUserPost.as_view(), name='Update User Post'),
     path('post/<int:pk>/delete', views.deletePost.as_view(), name='Delete Post'),
     path('comment', views.getComment.as_view(), name='Comments'),
     path('comment/create', views.saveComment.as_view(), name='Save Comment'),
