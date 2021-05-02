@@ -83,7 +83,7 @@ class RegisterUserView(generics.CreateAPIView):
 class updateUserPost(generics.RetrieveUpdateAPIView):
     def get_queryset(self):
         queryset = Post.objects.all()
-        queryset = queryset.filter(user=self.request.author)
+        queryset = queryset.filter(author=self.request.user)
 	# Leftside of filter: from queryset. Rightside: how we're filtering
         return queryset
     serializer_class = PostSerializerWithAuthorId
