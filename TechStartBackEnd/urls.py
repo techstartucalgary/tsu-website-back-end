@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from BackEnd import views
 from rest_framework.authtoken.views import obtain_auth_token
+from django.conf.urls import url
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,6 +40,6 @@ urlpatterns = [
     path('comment/create', views.saveComment.as_view(), name='Save Comment'),
     path('comment/<int:pk>', views.updateComment.as_view(), name='Update Comment'),
     path('comment/<int:pk>/delete', views.deleteComment.as_view(), name='Delete Comment'),
-    path('login', obtain_auth_token, name='API Token Login'),
+    path('login', views.customObtainAuthToken.as_view(), name='API Token Login'),
     path('register', views.RegisterUserView.as_view(), name='Register user')
 ]
