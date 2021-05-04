@@ -41,5 +41,6 @@ urlpatterns = [
     path('comment/<int:pk>', views.updateComment.as_view(), name='Update Comment'),
     path('comment/<int:pk>/delete', views.deleteComment.as_view(), name='Delete Comment'),
     path('login', views.customObtainAuthToken.as_view(), name='API Token Login'),
-    path('register', views.RegisterUserView.as_view(), name='Register user')
+    path('register', views.RegisterUserView.as_view(), name='Register user'),
+    path('ping', views.pingAppView, name='Ping Heroku Server')
 ]

@@ -96,3 +96,6 @@ class customObtainAuthToken(ObtainAuthToken):
         response = super(customObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
         return Response({'token': token.key, 'id': token.user_id})
+
+def pingAppView(request):
+    return HttpResponse("")
