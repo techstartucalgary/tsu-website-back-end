@@ -10,6 +10,7 @@ from rest_framework import permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
 
 # Create your views here.
 class saveNewsSection(generics.CreateAPIView):
@@ -83,6 +84,14 @@ class RegisterUserView(generics.CreateAPIView):
     ]
     serializer_class = RegisterSerializer 
 
+class createUserPost(generics.CreateAPIView):
+    def get_queryset(self):
+        queryset = Post.objects.all()
+        queryset = queryset.filter(author=self.request.user)
+	# Leftside of filter: from queryset. Rightside: how we're filtering
+        return queryset
+    serializer_class = PostSerializerWithAuthorId
+
 class updateUserPost(generics.RetrieveUpdateAPIView):
     def get_queryset(self):
         queryset = Post.objects.all()
@@ -90,6 +99,17 @@ class updateUserPost(generics.RetrieveUpdateAPIView):
 	# Leftside of filter: from queryset. Rightside: how we're filtering
         return queryset
     serializer_class = PostSerializerWithAuthorId
+
+class deleteUserPost(generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        queryset = Post.objects.all()
+        queryset = queryset.filter(author=self.request.user)
+	# Leftside of filter: from queryset. Rightside: how we're filtering
+        return queryset
+    serializer_class = PostSerializer
+
+
 
 class customObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
