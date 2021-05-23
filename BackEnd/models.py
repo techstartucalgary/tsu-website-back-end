@@ -10,8 +10,6 @@ class EventSection(models.Model):
         return str(self.event_category)
 
 class Event(models.Model):
-
-    
     title = models.CharField(max_length=200)
     category = models.ForeignKey(EventSection, on_delete=models.CASCADE)
     event_description = models.CharField(max_length=10000000)

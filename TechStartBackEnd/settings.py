@@ -25,9 +25,7 @@ SECRET_KEY = '@1v@3=u9opx4^0#mq+$_clr%3ib=161e)qh9730(0e81i)_s&@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://techstartbackend.herokuapp.com', 
-                 'https://tech-start-website.web.app/'
-                ]
+ALLOWED_HOSTS = ['https://techstartbackend.herokuapp.com']
 
 # Application definition
 
