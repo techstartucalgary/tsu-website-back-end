@@ -1,65 +1,52 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import generics
-from rest_framework import status
 from .models import *
 from .serializers import *
-from django.http import HttpResponse, response
+from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 from rest_framework import permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import IsAuthenticated
 
-# Create your views here.
-class saveNewsSection(generics.CreateAPIView):
-    queryset = NewsSection.objects.all()
-    serializer_class = NewsSectionSerializer
+# Create your views here. 
+class saveEventSection(generics.CreateAPIView):
+    queryset = EventSection.objects.all()
+    serializer_class = EventSectionSerializer
 
-class getNewsSection(generics.ListAPIView):
-    queryset = NewsSection.objects.all()
-    serializer_class = NewsSectionSerializer
+class getEventSection(generics.ListAPIView):
+    queryset = EventSection.objects.all()
+    serializer_class = EventSectionSerializer
 
-class deleteNewsSection(generics.DestroyAPIView):
-    queryset = NewsSection.objects.all()
-    serializer_class = NewsSectionSerializer
+class deleteEventSection(generics.DestroyAPIView):
+    queryset = EventSection.objects.all()
+    serializer_class = EventSectionSerializer
 
-class updateNewsSection(generics.RetrieveUpdateAPIView):
-    queryset = NewsSection.objects.all()
-    serializer_class = NewsSectionSerializer
+class updateEventSection(generics.RetrieveUpdateAPIView):
+    queryset = EventSection.objects.all()
+    serializer_class = EventSectionSerializer
 
-class saveNews(generics.CreateAPIView):
-    queryset = News.objects.all()
-    serializer_class = NewsSerializerWithNewsSectionId
+class saveEvent(generics.CreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializerWithEventSectionId
 
-class getNews(generics.ListAPIView):
-    queryset = News.objects.all()
-    serializer_class = NewsSerializer
+class getEvent(generics.ListAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
 
-class deleteNews(generics.DestroyAPIView):
-    queryset = News.objects.all()
-    serializer_class = NewsSerializer
+class deleteEvent(generics.DestroyAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
 
-class updateNews(generics.RetrieveUpdateAPIView):
-    queryset = News.objects.all()
-    serializer_class = NewsSerializerWithNewsSectionId
-
-class savePost(generics.CreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializerWithAuthorId
+class updateEvent(generics.RetrieveUpdateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializerWithEventSectionId
 
 class getPost(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-
-class deletePost(generics.DestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-class updatePost(generics.RetrieveUpdateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializerWithAuthorId
 
 class saveComment(generics.CreateAPIView):
     queryset = Comment.objects.all()
@@ -113,9 +100,10 @@ class deleteUserPost(generics.DestroyAPIView):
 
 class customObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
+        user = self.request.user
         response = super(customObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
-        return Response({'token': token.key, 'id': token.user_id})
+        return Response({'token': token.key, 'id': token.user_id, 'first': user.first_name, 'last': user.last_name})
 
 def pingAppView(request):
     return HttpResponse("")

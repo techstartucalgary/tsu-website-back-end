@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import NewsSection, News, Post, Comment
+from .models import EventSection, Event, Post, Comment
 
 # Register your models here.
 
-
-admin.site.register(NewsSection)
-admin.site.register(News)
+admin.site.register(EventSection)
+admin.site.register(Event)
 admin.site.register(Post)
 admin.site.register(Comment)

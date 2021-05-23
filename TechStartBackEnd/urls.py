@@ -16,29 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from BackEnd import views
-from rest_framework.authtoken.views import obtain_auth_token
-from django.conf.urls import url
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('news-section', views.getNewsSection.as_view(), name='News Sections'),
-    path('news-section/create', views.saveNewsSection.as_view(), name='Save News Section'),
-    path('news-section/<int:pk>', views.updateNewsSection.as_view(), name='Update News Section'),
-    path('news-section/<int:pk>/delete', views.deleteNewsSection.as_view(), name='Delete News Section'),
-    path('news', views.getNews.as_view(), name='News'),
-    path('news/create', views.saveNews.as_view(), name='Save News'),
-    path('news/<int:pk>', views.updateNews.as_view(), name='Update News'),
-    path('news/<int:pk>/delete', views.deleteNews.as_view(), name='Delete News'),
+    path('event-section', views.getEventSection.as_view(), name='Event Sections'),
+    path('event-section/create', views.saveEventSection.as_view(), name='Save Event Section'),
+    path('event-section/<int:pk>', views.updateEventSection.as_view(), name='Update Event Section'),
+    path('event-section/<int:pk>/delete', views.deleteEventSection.as_view(), name='Delete Event Section'),
+    path('event', views.getEvent.as_view(), name='Event'),
+    path('event/create', views.saveEvent.as_view(), name='Save Event'),
+    path('event/<int:pk>', views.updateEvent.as_view(), name='Update Event'),
+    path('event/<int:pk>/delete', views.deleteEvent.as_view(), name='Delete Event'),
     path('post', views.getPost.as_view(), name='Posts'),
-    # path('post/create', views.savePost.as_view(), name='Save Post'),
-    # path('post/<int:pk>', views.updatePost.as_view(), name='Update Post'),
     path('create-post', views.createUserPost.as_view(), name='Create User Post'),
     path('update-post/<int:pk>', views.updateUserPost.as_view(), name='Update User Post'),
     path('delete-post/<int:pk>/delete', views.deleteUserPost.as_view(), name='Delete User Post'),
-
-    # path('post/<int:pk>/delete', views.deletePost.as_view(), name='Delete Post'),
     path('comment', views.getComment.as_view(), name='Comments'),
     path('comment/create', views.saveComment.as_view(), name='Save Comment'),
     path('comment/<int:pk>', views.updateComment.as_view(), name='Update Comment'),

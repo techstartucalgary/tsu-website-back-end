@@ -3,21 +3,20 @@ from rest_framework.validators import UniqueValidator
 
 from .models import *
 
-
-class NewsSectionSerializer(serializers.ModelSerializer):
+class EventSectionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = NewsSection
-        fields = ("news_category", "id")
+        model = EventSection
+        fields = ("event_category", "id")
 
-class NewsSerializer(serializers.ModelSerializer):
+class EventSerializer(serializers.ModelSerializer):
     class Meta:
-        model = News
-        fields = ("title", "category", "news_description", "date_published", "source", "url", "id")
+        model = Event
+        fields = ("title", "category", "event_description", "date_published", "source", "url", "id")
 
-class NewsSerializerWithNewsSectionId(serializers.ModelSerializer):
+class EventSerializerWithEventSectionId(serializers.ModelSerializer):
     class Meta:
-        model = News
-        fields = ("title", "category", "news_description", "date_published", "source", "url", "id", "category")
+        model = Event
+        fields = ("title", "category", "event_description", "date_published", "source", "url", "id", "category")
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:

@@ -4,17 +4,17 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class NewsSection(models.Model):
-    news_category = models.CharField(max_length=200)
+class EventSection(models.Model):
+    event_category = models.CharField(max_length=200)
     def __str__(self):
-        return str(self.news_category)
+        return str(self.event_category)
 
-class News(models.Model):
+class Event(models.Model):
 
     
     title = models.CharField(max_length=200)
-    category = models.ForeignKey(NewsSection, on_delete=models.CASCADE)
-    news_description = models.CharField(max_length=10000000)
+    category = models.ForeignKey(EventSection, on_delete=models.CASCADE)
+    event_description = models.CharField(max_length=10000000)
     date_published = models.DateField()
     # image = models.ImageField()
     source = models.CharField(max_length=200)
@@ -22,15 +22,6 @@ class News(models.Model):
     # tags = models.CharField(max_length=200) 
     def __str__(self):
         return str(self.title)
-
-# automatic account system
-
-# class Account(models.Model):
-#     name = models.CharField(max_length=200)
-#     email = models.CharField(max_length=200)    # special field
-#     password = models.CharField(max_length=200) # special field
-#     # profile_picture = models.ImageField()
-#     degree = models.CharField(max_length=200)
 
 class Post(models.Model): 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
