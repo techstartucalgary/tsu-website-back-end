@@ -21,12 +21,12 @@ class EventSerializerWithEventSectionId(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ("author", "title", "date_posted", "post_description", "id")
+        fields = ("author", "first_name", "last_name", "title", "date_posted", "post_description", "id")
 
 class PostSerializerWithAuthorId(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ("author", "title", "date_posted", "post_description", "id", "author")
+        fields = ("author", "first_name", "last_name", "title", "date_posted", "post_description", "id", "author")
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:

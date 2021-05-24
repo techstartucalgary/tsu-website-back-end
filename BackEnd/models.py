@@ -23,6 +23,8 @@ class Event(models.Model):
 
 class Post(models.Model): 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.ForeignKey(User.first_name, on_delete=models.CASCADE)
+    last_name = models.ForeignKey(User.last_name, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     date_posted = models.DateField()
     post_description = models.TextField(max_length=10000000)
