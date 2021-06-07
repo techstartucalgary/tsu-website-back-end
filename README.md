@@ -31,4 +31,6 @@ heroku run manage.py migrate
 
 Endpoints can be found at https://techstartbackend.herokuapp.com/. 
 
+login endpoint ```https://techstartbackend.herokuapp.com/login``` will return access token, first and last name.
+
 Find swagger documentation at https://techstartbackend.herokuapp.com/swagger/.
